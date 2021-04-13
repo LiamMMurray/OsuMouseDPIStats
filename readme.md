@@ -5,4 +5,4 @@
 
  usage
  --------------
- Stats will be relative to the resolution height set in "settings.ini" for example if you play at 1920x1080 resolution resolution_height in settings.ini should be set to 1080.
+ Stats will be relative to the resolution height set in "settings.ini" for example if you play at 1920x1080 resolution then resolution_height in settings.ini should be set to 1080.
