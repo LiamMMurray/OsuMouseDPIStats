@@ -5,6 +5,10 @@ from datetime import date
 import numpy
 import csv
 import re
+import configparser
+
+config = configparser.ConfigParser()
+config.read('settings.ini')
 
 integer_prog = re.compile('([\d]+)');
 float_prog = re.compile('([0-9]*\.[0-9]+|[0-9]+)');
@@ -100,7 +104,10 @@ for i in range (4, 640):
     # pixel height is assumed to control the Osu play area linearly
     # default pixel height is assumed to be 1080. If the user uses a different resolution, then this needs to be changed for equivalent results
     #   i.e. if someone used 400 dpi at a resolution height of 1000, this is assumed to be the equivalent to using 800dpi at a height of 2000
-    USER_RESOLUTION_HEIGHT = 1080
+    try:
+        USER_RESOLUTION_HEIGHT = float(config['DEFAULT']['resolution_height'])
+    except ValueError:
+        print("settings.ini, resolution height not formatted correctly")
 
     pixel_height_multiplier = USER_RESOLUTION_HEIGHT/resolution_height
     this_value = dpi_val*multiplier_val*os_multiplier*pixel_height_multiplier
